@@ -12,10 +12,10 @@ class Attractor {
       noStroke();
       stroke(0);
       strokeWeight(0);
-      if(this.power > 0){
+      if(this.power < 0){
         fill(127,0,0);
       }
-      else if(this.power < 0){
+      else if(this.power > 0){
         fill(0,0,127);
       }
       circle(this.position.x, this.position.y, this.power/5);
