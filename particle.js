@@ -33,10 +33,11 @@ class Particle {
 
   // Method to display
   show() {
+    noStroke();
     stroke(0, this.lifespan);
-    strokeWeight(2);
-    fill(127, this.lifespan);
-    circle(this.position.x, this.position.y, 8);
+    strokeWeight(0);
+    fill(random([10,200]),0,0, this.lifespan);
+    square(this.position.x, this.position.y, 8);
   }
 
   // Is the particle still useful?

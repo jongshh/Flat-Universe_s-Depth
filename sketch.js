@@ -3,15 +3,17 @@ let emitter;
 
 //{!1} One repeller
 let repeller;
+let repel;
 
 function setup() {
-  createCanvas(640, 240);
-  emitter = new Emitter(width / 2, 20);
-  repeller = new Repeller(width / 2, 200);
+  createCanvas(640, 640);
+  emitter = new Emitter(width / 2, height/2);
 }
 
 function draw() {
-  background(255);
+  background(0);
+  repeller = new Repeller(mouseX, mouseY);
+  repeller.setPower(repel);
   emitter.addParticle();
   // We’re applying a universal gravity.
   let gravity = createVector(0, 0.1);
