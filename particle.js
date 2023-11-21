@@ -36,7 +36,7 @@ class Particle {
     noStroke();
     stroke(0, this.lifespan);
     strokeWeight(0);
-    fill(random([10,200]),0,0, this.lifespan);
+    fill(random([10,50]), this.lifespan);
     square(this.position.x, this.position.y, 8);
   }
 
