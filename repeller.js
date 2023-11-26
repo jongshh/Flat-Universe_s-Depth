@@ -1,10 +1,14 @@
 class Repeller {
   constructor(x, y) {
     this.position = createVector(x, y);
-    //{!1} How strong is the repeller?
     this.power = 0;
   }
 
+  run() {
+    this.show();
+  }
+
+  // Method to update position
   setPower(value){
     this.power = value;
   }
@@ -23,7 +27,6 @@ class Repeller {
   }
 
   repel(particle) {
-    //{!6 .code-wide} This is the same repel algorithm we used in Chapter 2: forces based on gravitational attraction.
     let force = p5.Vector.sub(this.position, particle.position);
     let distance = force.mag();
     distance = constrain(distance, 1, 50);
