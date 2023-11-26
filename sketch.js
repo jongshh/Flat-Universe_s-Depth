@@ -22,7 +22,7 @@ function draw() {
 
   let posX = width/2;
   let posY = height/2-200;
-  let gravity = createVector(0, 0.1);
+  let gravity = createVector(0, 0);
 
   if (keyIsDown(UP_ARROW)){
     Rforce -= 1;
