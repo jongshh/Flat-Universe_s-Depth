@@ -1,5 +1,5 @@
 
-//{!1} The Emitter manages all the particles.
+//물질 파티클 시스템 
 class Materialsystem {
 
     constructor(x, y) {

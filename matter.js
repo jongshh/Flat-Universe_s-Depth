@@ -59,7 +59,7 @@ class Matter {
 
     
   
-    pull(particle) {
+    pullrepel(particle) {
       let force = p5.Vector.sub(this.position, particle.position);
       let distance = force.mag();
       distance = constrain(distance, 5, 50);

@@ -33,6 +33,14 @@ class Starsystem {
         particle.applyForce(force);
       }
     }
+
+    applyMatter(matter) {
+      //{!4} Calculating a force for each Particle based on a Repeller
+      for (let particle of this.particles) {
+        let force = matter.matter(particle);
+        particle.applyForce(force);
+      }
+    }
   
     run() {
       for (let i = this.particles.length - 1; i >= 0; i--) {
