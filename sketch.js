@@ -6,7 +6,7 @@ let Mforce = 0;
 function setup() {
   createCanvas(640, 640);
   
-  matter = new Matter(return.getPosition());
+  matter = new Matter();//포지션 리턴값
 
 }
 
