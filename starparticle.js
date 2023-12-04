@@ -12,7 +12,7 @@ class Starparticle extends Starphysic {
       this.acceleration.add(f);
     }
 
-    returnPosition(){
+    getPosition(){
       return this.position;
     }
   

@@ -15,26 +15,30 @@ class Starsystem {
     }
   
     applyForce(force) { // (외부 힘 적용, 따로 안쓰임)
-      for (let particle of this.particles) {
+      for (let particle of this.physic) {
         particle.applyForce(force);
       }
     }
   
     //유니버셜 어트렉터/리펠러 시스템
 
-    applyMatter(matter) { //밀고 당기기 
-      for (let particle of this.particles) {
+    applyMatter(matter) { //밀고 당기기
+      for (let particle of this.physic) {
         let force = matter.pullrepel(particle);
         particle.applyForce(force);
       }
     }
+
+    getPosition(){
+      return this.physic.getPosition()
+    }
   
     run() {
-      for (let i = this.particles.length - 1; i >= 0; i--) {
-        const particle = this.particles[i];
+      for (let i = this.physic.length - 1; i >= 0; i--) {
+        const particle = this.physic[i];
         particle.run();
         if (particle.isDead()) {
-          this.particles.splice(i, 1);
+          this.physic.splice(i, 1);
         }
       }
     }

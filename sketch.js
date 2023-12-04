@@ -5,18 +5,14 @@ let Mforce = 0;
 
 function setup() {
   createCanvas(640, 640);
-  
-  matter = new Matter();//포지션 리턴값
-
 }
 
 function draw() {
   background(255);
-
-
 // 키보드로 파티클들의 밀어내기/당기기 조정 (통합)
 
  starsystem = new Starsystem(mouseX, mouseY, Mforce, 255); //(X 위치 , Y 위치, 크기, 수명)
+ matter = new Matter(starsystem.getPosition());//포지션 리턴값
 
   if (keyIsDown(UP_ARROW)){
     Mforce -= 1;
