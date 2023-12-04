@@ -1,43 +1,30 @@
 
-//{!1} The Emitter manages all the particles.
 class Starsystem {
 
-    constructor(x, y) {
+    constructor(x, y, s, gui) {
       this.origin = createVector(x, y);
       this.particles = [];
+      this.physic = [];
+      this.size = s;
+      this.gui = gui
     }
   
     addParticle() {
-      this.particles.push(new Particle(this.origin.x, this.origin.y));
+      this.particles.push(new Starparticle(this.origin.x, this.origin.y, this.size, this.gui)); // 각각 x, y 위치, 크기, 수명(GUI 제어)
+      this.physic.push(new Starphysic(this.origin.x, this.origin.y, this.size, this.gui)); // 각각 x, y 위치, 크기, 수명(GUI 제어)
     }
   
-    applyForce(force) {
-      //{!3} Applying a force as a p5.Vector
+    applyForce(force) { // (외부 힘 적용, 따로 안쓰임)
       for (let particle of this.particles) {
         particle.applyForce(force);
       }
     }
   
-    applyRepeller(repeller) {
-      //{!4} Calculating a force for each Particle based on a Repeller
-      for (let particle of this.particles) {
-        let force = attractor.pull(particle);
-        particle.applyForce(force);
-      }
-    }
-  
-    applyAttractor(attractor) {
-      //{!4} Calculating a force for each Particle based on a Repeller
-      for (let particle of this.particles) {
-        let force = repeller.repel(particle);
-        particle.applyForce(force);
-      }
-    }
+    //유니버셜 어트렉터/리펠러 시스템
 
-    applyMatter(matter) {
-      //{!4} Calculating a force for each Particle based on a Repeller
+    applyMatter(matter) { //밀고 당기기 
       for (let particle of this.particles) {
-        let force = matter.matter(particle);
+        let force = matter.pullrepel(particle);
         particle.applyForce(force);
       }
     }

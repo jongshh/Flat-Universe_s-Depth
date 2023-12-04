@@ -1,65 +1,17 @@
 //checking setPower to judge attract/repel +/- //
 class Matter {
-    constructor(x, y) {
-      this.position = createVector(x, y);
-      this.velocity = createVector(0, 0);
-      this.acceleration = createVector(0, 0);
-      this.power = 0;
-    }
-
-    run() {
-      this.show();
-      this.update();
+    constructor() {
+    this.position = Starparticle.position.copy()
+    this.power = 0;
     }
   
-    applyForce(f) {
-      this.velocity.add(f);
-    }
-  
-    update() {
-      this.velocity.add(this.acceleration);
-      this.position.add(this.velocity);
-    }
-
-    // bound(width, height){
-    //   if (this.position.x > width - this.awidth) {
-    //     this.velocity.x*=-1;
-    //     this.position.x = width - this.awidth;
-    //   } else if (this.position.x < 0 + this.awidth) {
-    //     this.position.x = 0 + this.awidth;
-    //     this.velocity.x*=-1;
-    //   }
-  
-    //   if (this.position.y > height - this.awidth) {
-    //     this.velocity.y*=-1;
-    //     this.position.y = height - this.awidth;
-    //   } else if (this.position.y < 0 + this.awidth) {
-    //     this.velocity.y*=-1;
-    //     this.position.y = 0 + this.awidth;
-    //   }
-    // }
-  
-    setPower(value){
+    setPower(value){ //질량을 받음
       this.power = value;
-      this.awidth = abs(value/10)
+      // this.awidth = abs(value/10)
     }
-  
-    // show() {
-    //   noStroke();
-    //   stroke(0);
-    //   strokeWeight(0);
-    //   if(this.power < 0){
-    //     fill(127,0,0);
-    //   }
-    //   else if(this.power > 0){
-    //     fill(0,0,127);
-    //   }
-    //   circle(this.position.x, this.position.y, this.power/5);
-    // }
-
     
   
-    pullrepel(particle) {
+    pullrepel(particle) { //질량에 따라 밀고 당기는 양을 계산하여 각 파티클마다 리턴한다
       let force = p5.Vector.sub(this.position, particle.position);
       let distance = force.mag();
       distance = constrain(distance, 5, 50);

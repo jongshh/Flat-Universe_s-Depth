@@ -1,81 +1,34 @@
-// One ParticleSystem
-let emitter;
-// let emitters = [];
 
-// // let attractors = [];
-// let n = 1;
-
-let repeller;
-let attractor;
-let Rforce = 0;
-let Aforce = 0;
-
-
+let starsystem;
+let matter;
+let Mforce = 0;
 
 function setup() {
   createCanvas(640, 640);
+  
+  matter = new Matter(return.getPosition());
 
-  let posX = width/2;
-let posY = height/2-200;
-
-  emitter = new Emitter(width/2, height/2);
-  attractor = new Attractor(posX, posY);
-
-  // for (let i = 0; i < n; i++) {
-  //   let atn = new Attractor();
-  //   attractors.push(atn);
-  // }
 }
-
-// function mouseClicked(){
-//   let s = new Emitter(mouseX, mouseY);
-//   emitters.push(s);
-// }
 
 function draw() {
   background(255);
 
-  let gravity = createVector(0, 0);
-  let rdpower = createVector(random(-1,1), random(-1,1));
+
+// 키보드로 파티클들의 밀어내기/당기기 조정 (통합)
+
+ starsystem = new Starsystem(mouseX, mouseY, Mforce, 255); //(X 위치 , Y 위치, 크기, 수명)
 
   if (keyIsDown(UP_ARROW)){
-    Rforce -= 1;
+    Mforce -= 1;
   }
   if (keyIsDown(DOWN_ARROW)){
-    Rforce += 1;
-  }
-  if (keyIsDown(LEFT_ARROW)){
-    Aforce -= 1;
-  }
-  if (keyIsDown(RIGHT_ARROW)){
-    Aforce += 1;
+    Mforce += 1;
   }
 
-  // for (let atn of attractors) {
-  //   atn.setPower(Aforce);
-  //   atn.applyForce(rdpower);
-  //   atn.run();
-  // }
-  repeller = new Repeller(mouseX, mouseY);
-  // attractor = new Attractor(posX,posY);
+  matter.setPower(Mforce);
 
+  starsystem.addParticle();
+  starsystem.applyMatter(matter);
+  starsystem.run();
 
-  repeller.setPower(Rforce);
-
-  attractor.setPower(Aforce);
-  attractor.applyForce(rdpower);
-
-  repeller.run();
-  attractor.bound(width, height);
-  attractor.run();
-
-
-  // for(let s of emitters){
-  emitter.addParticle();
-  emitter.applyForce(gravity);
-  emitter.applyRepeller(repeller);
-  emitter.applyAttractor(attractor);
-  emitter.run();
-
-//}
 }

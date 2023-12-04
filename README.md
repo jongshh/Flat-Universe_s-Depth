@@ -25,4 +25,19 @@
 상속 예상도  
 ![상속 정리](https://github.com/jongshh/Flat-Universe_s-Depth/assets/142870062/f09c1227-6333-42c1-84b3-c8adace02683)
 
+- Fix log
+
+- 기존 Emitter, Particle, Attractor/Repeller 를 대체하고, 세분화하는 코드들을 작성함. Sketch 또한 교체할 예정 (Variation 2 로 만들듯)
+- 모든 파티클들의 행동 부여가 겹치기 때문에 Starphysic 이라는 슈퍼클래스로 통일함. (x,y,s(사이즈),gui(수명))을 조정가능하게 할 예정 + 기믹 추가
+- Attractor 와 Repeller 의 수치를 -/+ 로 조정하는 setPower를 통해 하나의 클래스로 통일, 각 수치에 random()하여 파티클 시스템을 생성시킬 예정
+
+- Idea?
+
+- 파티클뿐만 아니라 파티클 시스템도 슈퍼클래스를 만들 수 있을까?
+
+- 막힌점
+
+Matter의 역할은 밀고 당기는 것 (즉 각 질량에 대해 반응함)
+서로 밀고 당기기 위해서는 matter 의 영향을 각 파티클이 보내고 받을 수 있어야함
+
 
