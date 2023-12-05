@@ -9,6 +9,10 @@ class Materialsystem{
     this.gui = gui; 
   }
 
+  sizeInterval(value){
+    this.size -= value
+  }
+
   addParticle() { // 파티클 추가
     this.particles.push(new Materialparticle(this.origin.x, this.origin.y, this.size, this.gui)); // 각각 x, y 위치, 크기, 수명(GUI 제어)
   }

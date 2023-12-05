@@ -12,6 +12,9 @@ class Matter {
   // Method to update position
   setPower(value){
     this.power = value;
+    // if(keyIsPressed(ALT)){
+    // this.power * -1;
+    // }
   }
 
   show() {
@@ -24,7 +27,7 @@ class Matter {
     else if(this.power < 0){
       fill(0,0,127);
     }
-    circle(this.position.x, this.position.y, this.power/2);
+    circle(this.position.x, this.position.y, this.power);
   }
   
 
