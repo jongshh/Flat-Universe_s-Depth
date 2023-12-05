@@ -6,22 +6,30 @@ let Aforce = 0;
 let Msize = 0;
 let s;
 let cursor;
+let life = 10000;
+let nparticle = 15;
 
 function setup() {
   createCanvas(640, 640);
 }
 
-function mouseClicked(){
-  let m = new Materialsystem(mouseX, mouseY, Mforce, 255, Msize); //(X 위치 , Y 위치, 크기, 수명)
-  materialsystem.push(m);
-}
-
 function keyPressed(){
   if (keyCode === ENTER) {
-    s = new Matter(mouseX,mouseY); 
+    let m = new Materialsystem(mouseX, mouseY, Mforce, life, nparticle); //(X 위치 , Y 위치, 크기, 수명)
+    materialsystem.push(m);
+  }
+}
+
+function keyTyped(){
+if(key === 'b'){
+  Aforce = Aforce * -1;
+  }
+}
+
+function mouseClicked(){
+  s = new Matter(mouseX,mouseY);  // 새로운 고정 항성
     matter.push(s);
     s.setPower(Aforce);
-  }
 }
 
 
@@ -62,9 +70,10 @@ let gravity = createVector(0, 0);
 
   for (let m of materialsystem){
   m.sizeInterval(Msize);
-  m.addParticle();
   m.applyMatter(s, matter);
+  m.applyCMatter(cursor);
   m.applyForce(gravity);
   m.run();
+  m.addParticle();
   } 
 }

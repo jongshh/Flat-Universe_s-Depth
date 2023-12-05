@@ -1,20 +1,23 @@
 
 class Materialsystem{
 
-  constructor(x, y, s, gui) {
+  constructor(x, y, s, life, nparticle) {
     this.position = createVector(x, y);
     this.origin = this.position.copy();
     this.particles = [];
     this.size = s;
-    this.gui = gui; 
+    this.lifespan = life; 
+    this.nparticle = nparticle
   }
 
   sizeInterval(value){
-    this.size -= value
+    this.size -= value;
   }
 
   addParticle() { // 파티클 추가
-    this.particles.push(new Materialparticle(this.origin.x, this.origin.y, this.size, this.gui)); // 각각 x, y 위치, 크기, 수명(GUI 제어)
+    if(this.particles.length < this.nparticle){
+    this.particles.push(new Materialparticle(random(0,width),random(0,height), this.size, this.lifespan)); // 각각 x, y 위치, 크기, 수명(GUI 제어)
+    }
   }
 
   applyForce(force) { // (외부 힘 적용, 따로 안쓰임)
@@ -31,6 +34,13 @@ class Materialsystem{
       let force = matter.matter(particle);
       particle.applyForce(force);
       }
+    }
+  }
+
+  applyCMatter(matter) { //밀고 당기기
+    for (let particle of this.particles) {
+      let force = matter.matter(particle);
+      particle.applyForce(force);
     }
   }
 

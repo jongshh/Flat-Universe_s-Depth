@@ -2,11 +2,11 @@
 //https://editor.p5js.org/picxenk@gmail.com/sketches/U078nejRv 예제 참고
 
 class Starphysic {
-    constructor(x, y, s, gui) {
+    constructor(x, y, s, life) {
       this.position = createVector(x, y);
       this.velocity = createVector(random(-1, 1), random(-1, 1));
       this.acceleration = createVector(0, 0);
-      this.lifespan = gui; // GUI로 조정 (개별적으로)
+      this.lifespan = life; // GUI로 조정 (개별적으로)
       this.size = s;
     }
 

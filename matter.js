@@ -12,9 +12,7 @@ class Matter {
   // Method to update position
   setPower(value){
     this.power = value;
-    // if(keyIsPressed(ALT)){
-    // this.power * -1;
-    // }
+
   }
 
   show() {
