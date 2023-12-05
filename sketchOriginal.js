@@ -16,7 +16,7 @@ function setup() {
   createCanvas(640, 640);
 
   let posX = width/2;
-let posY = height/2-200;
+  let posY = height/2-200;
 
   emitter = new Emitter(width/2, height/2);
   attractor = new Attractor(posX, posY);

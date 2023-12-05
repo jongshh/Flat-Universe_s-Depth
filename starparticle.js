@@ -1,8 +1,6 @@
 class Starparticle extends Starphysic {
     constructor(x, y, s, gui) { //컨스트럭터의 값을 항상 우선으로 함?
-      super(x, y) // 슈퍼클래스에서 가져올 인자 값
-      this.size = s;
-      this.gui = gui;
+      super(x, y, s, gui) // 슈퍼클래스에서 가져올 인자 값
     }
 
     // 실행 구문
