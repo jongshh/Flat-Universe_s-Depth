@@ -12,9 +12,9 @@ class Starparticle extends Starphysic {
       this.acceleration.add(f);
     }
 
-    getPosition(){
-      return this.position;
-    }
+    // getPosition(){
+    //   return this.position;
+    // }
   
     // 파티클의 모양 
     show() {

@@ -29,9 +29,9 @@ class Starsystem {
       }
     }
 
-    getPosition(){
-      return this.physic.getPosition()
-    }
+    // getPosition(){
+    //   return this.particles.getPosition()
+    // }
   
     run() {
       for (let i = this.physic.length - 1; i >= 0; i--) {

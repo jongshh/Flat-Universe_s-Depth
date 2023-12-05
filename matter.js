@@ -1,7 +1,6 @@
 //checking setPower to judge attract/repel +/- //
 class Matter {
     constructor() {
-    this.position = Starparticle.position.copy()
     this.power = 0;
     }
   
@@ -10,9 +9,9 @@ class Matter {
       // this.awidth = abs(value/10)
     }
 
-    getPosition(){
-      return 
-    }
+    // getPosition(){
+    //   return 
+    // }
     
   
     pullrepel(particle) { //질량에 따라 밀고 당기는 양을 계산하여 각 파티클마다 리턴한다
