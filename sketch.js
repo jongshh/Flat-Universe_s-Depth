@@ -23,6 +23,7 @@ let params = {
   materialmassMin : 0,
   materialmassMax : 50,
   particlecolor : [50, 50, 50],
+  canvascolor : [255, 255, 255],
 }
 
 function setup() {
@@ -54,7 +55,7 @@ function mouseClicked(){
 
 
 function draw() {
-  background(255);
+  background(params.canvascolor);
 // 키보드로 파티클들의 밀어내기/당기기 조정 (통합)
 let gravity = createVector(0, 0);
 
@@ -80,6 +81,7 @@ let gravity = createVector(0, 0);
 
   //비주얼 텍스트
   strokeWeight(1)
+  stroke(255)
   fill(0);
   textSize(20);
   text("Currect Cursor Mass : "+nf(Aforce*10,1,0),width/2-115,height-20);
