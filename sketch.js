@@ -1,22 +1,41 @@
 
 let materialsystem = [];
 let matter = [];
-let Mforce = 5;
 let Aforce = 0;
 let Msize = 0;
 let s;
+let m;
 let cursor;
-let life = 10000;
-let nparticle = 15;
-let slife = 1500;
+
+//Gui
+let gui;
+let params = {
+  materiallife : 10000,
+  materiallifeMin : 0,
+  materiallifeMax : 25000,
+  nparticle : 15,
+  nparticleMin : 0,
+  nparticleMax : 50,
+  slife : 1500,
+  slifeMin : 0,
+  slifeMax : 5000,
+  materialmass : 5,
+  materialmassMin : 0,
+  materialmassMax : 50,
+  particlecolor : [50, 50, 50],
+}
 
 function setup() {
   createCanvas(640, 640);
+
+  gui = createGui('Set your Status');  
+  gui.addObject(params);
+  gui.setPosition(0, 0);
 }
 
 function keyPressed(){
   if (keyCode === ENTER) {
-    let m = new Materialsystem(mouseX, mouseY, Mforce, life, nparticle, slife); //(X 위치 , Y 위치, 크기, 수명)
+    m = new Materialsystem(mouseX, mouseY, params.materialmass, params.materiallife, params.nparticle, params.slife); //(X 위치 , Y 위치, 크기, 수명)
     materialsystem.push(m);
   }
 }
@@ -40,17 +59,17 @@ function draw() {
 let gravity = createVector(0, 0);
 
 
+  // if (keyIsDown(UP_ARROW)){
+  //   Mforce -= 0.1;
+  // }
+  // if (keyIsDown(DOWN_ARROW)){
+  //   Mforce += 0.1;
+  // }
   if (keyIsDown(UP_ARROW)){
-    Mforce -= 0.1;
+    Aforce += 0.1;
   }
   if (keyIsDown(DOWN_ARROW)){
-    Mforce += 0.1;
-  }
-  if (keyIsDown(LEFT_ARROW)){
     Aforce -= 0.1;
-  }
-  if (keyIsDown(RIGHT_ARROW)){
-    Aforce += 0.1;
   }
   if (keyIsDown(CONTROL)){
     Msize -= 0.001;
@@ -59,23 +78,32 @@ let gravity = createVector(0, 0);
     Msize += 0.001;
   }
 
+  //비주얼 텍스트
+  strokeWeight(1)
+  fill(0);
+  textSize(20);
+  text("Currect Cursor Mass : "+nf(Aforce*10,1,0),width/2-115,height-20);
+
+
+// 커서 구문
   cursor = new Cursor(mouseX, mouseY);
   cursor.setSize(Aforce);
   cursor.run();
 
 
-
-  for (let s of matter){
+//고정 항성 구문
+  for (s of matter){
     s.run();
   } 
 
-  for (let m of materialsystem){
+  //물질 구문
+  for (m of materialsystem){
   m.sizeInterval(Msize);
   m.applyMatter(s, matter);
   m.applyCMatter(cursor);
   m.applyForce(gravity);
   m.run();
-  m.addParticle();
+  m.addParticle(params.particlecolor);
   if (m.life()) {
     materialsystem.splice(m, 1);
   }
