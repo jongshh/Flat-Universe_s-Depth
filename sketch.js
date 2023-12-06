@@ -8,6 +8,7 @@ let s;
 let cursor;
 let life = 10000;
 let nparticle = 15;
+let slife = 1500;
 
 function setup() {
   createCanvas(640, 640);
@@ -15,7 +16,7 @@ function setup() {
 
 function keyPressed(){
   if (keyCode === ENTER) {
-    let m = new Materialsystem(mouseX, mouseY, Mforce, life, nparticle); //(X 위치 , Y 위치, 크기, 수명)
+    let m = new Materialsystem(mouseX, mouseY, Mforce, life, nparticle, slife); //(X 위치 , Y 위치, 크기, 수명)
     materialsystem.push(m);
   }
 }
@@ -75,5 +76,8 @@ let gravity = createVector(0, 0);
   m.applyForce(gravity);
   m.run();
   m.addParticle();
+  if (m.life()) {
+    materialsystem.splice(m, 1);
+  }
   } 
 }
