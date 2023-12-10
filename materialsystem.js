@@ -4,10 +4,11 @@ class Materialsystem{
   constructor(x, y, s, life, nparticle, slife) {
     this.position = createVector(x, y);
     this.origin = this.position.copy();
+    this.explosions = [];
     this.particles = [];
     this.size = s;
     this.lifespan = life; 
-    this.nparticle = nparticle
+    this.nparticle = nparticle;
     this.systemlife = slife;
   }
 
@@ -55,9 +56,18 @@ class Materialsystem{
       particle.run();
       if (particle.isDead()) {
         this.particles.splice(i, 1);
+        this.explosions.push(new Starexpsystem(particle.position,this.size));
       }
     }
-  }
+
+    for(let exp of this.explosions){
+      exp.run();
+      exp.addParticle();
+      if (exp.life()) {
+        this.explosions.splice(exp, 1);
+      }
+    }
+   }
 
   life(){
     return this.systemlife < 0;
