@@ -10,15 +10,15 @@ let cursor;
 //Gui
 let gui;
 let params = {
-  materiallife : 10000,
+  materiallife : 5000,
   materiallifeMin : 0,
-  materiallifeMax : 25000,
+  materiallifeMax : 15000,
   nparticle : 15,
   nparticleMin : 0,
   nparticleMax : 50,
   slife : 1500,
   slifeMin : 0,
-  slifeMax : 5000,
+  slifeMax : 50000,
   materialmass : 5,
   materialmassMin : 0,
   materialmassMax : 50,
