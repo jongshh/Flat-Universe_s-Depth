@@ -33,7 +33,7 @@
         display(){
             // stroke(this.fc,25,25,this.lifespan);
             // strokeWeight(3);
-            fill(255 - this.fc,25,25, this.lifespan);
+            fill(200 + this.fc, 150 + this.fc, 255 - (this.fc*2), this.lifespan);
             ellipse(this.position.x, this.position.y, this.ballrad, this.ballrad);
         }  
       

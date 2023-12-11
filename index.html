@@ -7,6 +7,25 @@
     <meta charset="utf-8" />
     <title>NOC_4_07_ParticleSystemForcesRepeller</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      canvas {
+        display: block;
+      }
+
+      #description {
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(61, 61, 61, 0.8);
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <h2>Flat Universe</h2>
@@ -21,5 +40,11 @@
     <script src="cursor.js"></script>
     <script src="sketch.js"></script>
     <!-- 추가된 js 파일 추가, GUI 라이브러리 추가 -->
+    <h3>Make This Universe Alive!</h3>
+    <div id="description">
+      <h3>How to Play?</h3>
+      <p>LeftClick : Make a New Star from Cursor | Up/Down Arrow : Increase/Decrease Power of Star <br> C : Set Power 0 of Cursor | B : Reverse Power of Cursor | Enter : Make a New Material System <br><br> GUI Stands For | MaterialLife : Life of Each Material | Nparticle : Material Gen per System | Slife : Life of Each Material System | MaterialMass : Mass of Material of MaterialSystem <br> *Warning*
+        Changes to the gui will not affect the current system.</p>
+    </div>
   </body>
 </html>

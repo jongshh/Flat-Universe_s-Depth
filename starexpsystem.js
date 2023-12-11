@@ -5,7 +5,7 @@ class Starexpsystem {
       this.origin = position.copy();
       this.particles = [];
       this.systemlife = 60;
-      this.count = 20;
+      this.count = 45;
       this.size = size;
     }
     
