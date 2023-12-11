@@ -12,9 +12,9 @@ class Materialsystem{
     this.systemlife = slife;
   }
 
-  sizeInterval(value){
-    this.size -= value;
-  }
+  // sizeInterval(value){
+  //   this.size -= value;
+  // }
 
   addParticle(aColor) { // 파티클 추가
     if(this.particles.length < this.nparticle){
