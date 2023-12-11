@@ -16,14 +16,14 @@ let params = {
   nparticle : 15,
   nparticleMin : 0,
   nparticleMax : 50,
-  slife : 1500,
+  slife : 25000,
   slifeMin : 0,
   slifeMax : 50000,
   materialmass : 5,
   materialmassMin : 0,
   materialmassMax : 50,
-  particlecolor : [50, 50, 50],
-  canvascolor : [255, 255, 255],
+  particlecolor : [200, 200, 200],
+  canvascolor : [0, 0, 0],
 }
 
 function setup() {
@@ -47,7 +47,7 @@ if(key === 'b'){
   }
 }
 
-function mouseClicked(){
+function mouseClicked(){ // 마우스 클릭으로 작동하니까 GUI 조작 때 겹쳐 버그 발생
   s = new Matter(mouseX,mouseY);  // 새로운 고정 항성
     matter.push(s);
     s.setPower(Aforce);
