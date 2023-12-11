@@ -56,13 +56,14 @@ class Materialsystem{
       particle.run();
       if (particle.isDead()) {
         this.particles.splice(i, 1);
-        this.explosions.push(new Starexpsystem(particle.position,this.size));
+        let exp = new Starexpsystem(particle.position,this.size);
+        this.explosions.push(exp);
+        exp.addParticle();
       }
     }
 
     for(let exp of this.explosions){
       exp.run();
-      exp.addParticle();
       if (exp.life()) {
         this.explosions.splice(exp, 1);
       }

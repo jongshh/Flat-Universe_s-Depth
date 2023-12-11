@@ -10,10 +10,10 @@ class Starexpsystem {
     }
     
     addParticle(){
-      if (frameCount%15 == 0){
+      // if (frameCount%15 == 0){
       for (let i = 0; i < this.count; i++){
     this.particles.push(new Starexpparticle(this.origin,this.systemlife,this.size));
-      }
+      // }
     }
     this.systemlife -=1;
     }
