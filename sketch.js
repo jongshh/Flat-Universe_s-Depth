@@ -41,20 +41,20 @@ function keyPressed(){ // 파티클 생성
   }
 }
 
-function keyTyped(){ // 커서 파워 클리어 /  커서 파워 반전
+function keyTyped(){ // 커서 파워 클리어
   if(key === 'c'){
     Aforce = 0;
     }
-
+    
   if(key === 'b'){
     Aforce = Aforce * -1;
-    }
+    } 
 }
 
 // function keyTyped(){ // 커서 파워 반전
-// if(key === 'v'){
+// if(key === 'b'){
 //   Aforce = Aforce * -1;
-//   }
+//   } 
 // }
 
 function mouseClicked(){ // 마우스 클릭으로 작동하니까 GUI 조작 때 겹쳐 버그 발생
