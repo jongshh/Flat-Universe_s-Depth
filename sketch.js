@@ -13,7 +13,7 @@ let params = {
   materiallife : 5000,
   materiallifeMin : 0,
   materiallifeMax : 15000,
-  nparticle : 15,
+  nparticle : 8,
   nparticleMin : 0,
   nparticleMax : 50,
   slife : 25000,
@@ -72,10 +72,10 @@ let gravity = createVector(0, 0);
   // if (keyIsDown(DOWN_ARROW)){
   //   Mforce += 0.1;
   // }
-  if (keyIsDown(UP_ARROW)){
+  if (keyIsDown(SHIFT)){ // UP/DOWN 이 GUI에 간섭함
     Aforce += 0.1;
   }
-  if (keyIsDown(DOWN_ARROW)){
+  if (keyIsDown(CONTROL)){
     Aforce -= 0.1;
   }
   // if (keyIsDown(CONTROL)){
