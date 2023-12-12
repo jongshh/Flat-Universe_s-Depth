@@ -46,7 +46,7 @@ function keyTyped(){ // 커서 파워 클리어 /  커서 파워 반전
     Aforce = 0;
     }
 
-  if(key === 'v'){
+  if(key === 'b'){
     Aforce = Aforce * -1;
     }
 }
