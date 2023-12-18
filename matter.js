@@ -1,9 +1,16 @@
-//checking setPower to judge attract/repel +/- //
-class Matter {
-  constructor(x,y){
+//checking setPower to judge attract/repel +/- 
+class Matter{
+  constructor(x,y,life){
+  // super(x, y, s, life);
   this.power = 0;
   this.position = createVector(x,y);
+  this.lifespan = life;
   }
+
+  // applyForce(force) {
+  //   let f = p5.Vector.div(force, this.power);
+  //   this.acceleration.add(f);
+  // }
 
   run() {
     this.show();
@@ -26,6 +33,7 @@ class Matter {
       fill(0,0,127);
     }
     circle(this.position.x, this.position.y, this.power);
+    this.lifespan -= 1;
   }
   
 
@@ -37,4 +45,9 @@ class Matter {
     force.setMag(strength);
     return force;
   }
+
+  life() {
+    return this.lifespan < 0.0;
+  }
 }
+

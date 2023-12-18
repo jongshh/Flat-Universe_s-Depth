@@ -1,6 +1,7 @@
 
 let materialsystem = [];
 let matter = [];
+let explosions = [];
 let Aforce = 0;
 // let Msize = 0;
 let s;
@@ -22,6 +23,9 @@ let params = {
   materialmass : 5,
   materialmassMin : 0,
   materialmassMax : 50,
+  starlife : 1500,
+  starlifeMin : 1,
+  starlifeMax : 50000,
   gravity : 1,
   gravityMin : -10,
   gravityMax : 10,
@@ -55,7 +59,7 @@ function keyTyped(){ // 커서 파워 클리어
 }
 
 function mouseClicked(){ // 마우스 클릭으로 작동하니까 GUI 조작 때 겹쳐 버그 발생
-  s = new Matter(mouseX,mouseY);  // 새로운 고정 항성
+  s = new Matter(mouseX,mouseY,params.starlife);  // 새로운 고정 항성
     matter.push(s);
     s.setPower(Aforce);
 }
@@ -91,7 +95,21 @@ let gravity = createVector(0, 0);
 //고정 항성 구문
   for (s of matter){
     s.run();
-  } 
+    // s.applyForce();
+    if (s.life()) {
+      matter.splice(s, 1);
+      let exp = new Starexpsystem(s.position,abs(Aforce));
+      explosions.push(exp);
+      exp.addParticle();
+    }
+  }
+  for(let exp of explosions){
+    exp.run();
+    if (exp.life()) {
+      explosions.splice(exp, 1);
+    }
+  }
+
 
   //물질 구문
   for (m of materialsystem){

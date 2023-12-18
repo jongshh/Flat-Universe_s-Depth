@@ -90,7 +90,7 @@ class Materialsystem{
         this.explosions.splice(exp, 1);
       }
     }
-   }
+  }
 
   life(){
     return this.systemlife < 0;
