@@ -1,7 +1,7 @@
 
 class Materialsystem{
 
-  constructor(x, y, s, life, nparticle, slife) {
+  constructor(x, y, s, life, nparticle, slife, gravity) {
     this.position = createVector(x, y);
     this.origin = this.position.copy();
     this.explosions = [];
@@ -10,12 +10,13 @@ class Materialsystem{
     this.lifespan = life; 
     this.nparticle = nparticle;
     this.systemlife = slife;
+    this.G = gravity;
   }
 
 
   addParticle(aColor) { // 파티클 추가
     if(this.particles.length < this.nparticle){
-      for (let i = 0; i < this.nparticle; i++) {
+      for (let i = this.particles.length; i < this.nparticle; i++) {
     this.particles[i] = new Materialparticle(random(0,width),random(0,height), this.size, this.lifespan); // 각각 x, y 위치, 크기, 수명(GUI 제어)
       }
     }
@@ -33,18 +34,40 @@ class Materialsystem{
 
   //유니버셜 어트렉터/리펠러 시스템
 
-  applyMatter(matter,m) { //밀고 당기기
+  applyMatter(matter,m,G) { //밀고 당기기
     for (let particle of this.particles) {
       for (matter of m){
-      let force = matter.matter(particle);
+      let force = matter.matter(particle, G);
       particle.applyForce(force);
       }
     }
   }
 
-  applyCMatter(matter) { //밀고 당기기
+  applyPMatter(G){
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = 0; j < this.particles.length; j++) {
+        if (i !== j) {
+          let force = this.particles[j].pmatter(this.particles[i], G);
+          this.particles[i].applyForce(force);
+        }
+      }
+    }
+  }
+
+  takeDistance(){
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = 0; j < this.particles.length; j++) {
+        if (i !== j) {
+          let distance = this.particles[j].distance(this.particles[i]);
+          this.particles[i].applyCollision(distance);
+        }
+      }
+    }
+  }
+
+  applyCMatter(matter,G) { //밀고 당기기
     for (let particle of this.particles) {
-      let force = matter.matter(particle);
+      let force = matter.matter(particle, G);
       particle.applyForce(force);
     }
   }

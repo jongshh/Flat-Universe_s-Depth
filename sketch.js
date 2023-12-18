@@ -13,8 +13,8 @@ let params = {
   materiallife : 5000,
   materiallifeMin : 0,
   materiallifeMax : 15000,
-  nparticle : 8,
-  nparticleMin : 0,
+  nparticle : 15,
+  nparticleMin : 1,
   nparticleMax : 50,
   slife : 25000,
   slifeMin : 0,
@@ -22,12 +22,15 @@ let params = {
   materialmass : 5,
   materialmassMin : 0,
   materialmassMax : 50,
+  gravity : 1,
+  gravityMin : -10,
+  gravityMax : 10,
   particlecolor : [200, 200, 200],
   canvascolor : [0, 0, 0],
 }
 
 function setup() {
-  createCanvas(640, 640);
+  createCanvas(1000, 1000);
 
   gui = createGui('Set your Status');  
   gui.addObject(params);
@@ -36,7 +39,7 @@ function setup() {
 
 function keyPressed(){ // 파티클 생성
   if (keyCode === ENTER) {
-    m = new Materialsystem(mouseX, mouseY, random(1,params.materialmass), params.materiallife, params.nparticle, params.slife); //(X 위치 , Y 위치, 크기, 수명)
+    m = new Materialsystem(mouseX, mouseY, random(1,params.materialmass), params.materiallife, params.nparticle, params.slife, params.gravity); //(X 위치 , Y 위치, 크기, 수명)
     materialsystem.push(m);
   }
 }
@@ -76,7 +79,7 @@ let gravity = createVector(0, 0);
   stroke(255)
   fill(0);
   textSize(20);
-  text("Currect Cursor Mass : "+nf(Aforce*10,1,0),width/2-115,height-20);
+  text("Currect Cursor Mass : "+nf(Aforce*10,1,0),width/2-100,height-height+20);
 
 
 // 커서 구문
@@ -92,9 +95,11 @@ let gravity = createVector(0, 0);
 
   //물질 구문
   for (m of materialsystem){
-  m.applyMatter(s, matter);
-  m.applyCMatter(cursor);
+  m.applyMatter(s, matter,params.gravity);
+  m.applyCMatter(cursor,params.gravity);
   m.applyForce(gravity);
+  m.takeDistance();
+  m.applyPMatter(params.gravity);
   m.run();
   m.addParticle(params.particlecolor);
   if (m.life()) {
