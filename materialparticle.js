@@ -2,6 +2,7 @@ class Materialparticle extends Starphysic {
   constructor(x, y, s, life) { //컨스트럭터의 값을 항상 우선으로 함?
     super(x, y, s, life) // 슈퍼클래스에서 가져올 인자 값
     this.c = color(0);
+    this.sizeadj = 0;
   }
 
   // 실행 구문
@@ -15,6 +16,7 @@ class Materialparticle extends Starphysic {
   applyCollision(distance){
     if(distance < this.size){
       this.lifespan = 0;
+      this.sizeadj =  this.sizeadj + this.size
     }
   }
 
@@ -24,10 +26,10 @@ class Materialparticle extends Starphysic {
     stroke(0, this.lifespan);
     strokeWeight(0);
     fill(this.c, this.lifespan);
-    circle(this.position.x, this.position.y, this.size);
+    circle(this.position.x, this.position.y, this.size + this.sizeadj);
   }
 
-  pmatter(other,G) {
+  pmatter(other,G) { //파티클 -> 파티클
     let force = p5.Vector.sub(this.position, other.position);
     let distance = force.mag();
     distance = constrain(distance, 5+(abs(this.size)/2), 100);
@@ -36,7 +38,7 @@ class Materialparticle extends Starphysic {
     return force;
   }
 
-  distance(other){
+  distance(other){ // 파티클 -> 파티클
     let force = p5.Vector.sub(this.position, other.position);
     let distance = force.mag();
     return distance;

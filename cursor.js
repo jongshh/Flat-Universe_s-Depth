@@ -28,7 +28,7 @@ class Cursor {
       circle(this.position.x, this.position.y, this.power);
     }
 
-    matter(particle, G) { //질량에 따라 밀고 당기는 양을 계산하여 각 파티클마다 리턴한다
+    matter(particle, G) { //파티클 -> 커서
       let force = p5.Vector.sub(this.position, particle.position);
       let distance = force.mag();
       distance = constrain(distance, 5+(abs(this.power)/2), 100); //5+(abs(this.power)/2) 오류 코드 계산 발산 <-아니고 클릭 오류

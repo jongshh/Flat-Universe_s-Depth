@@ -55,11 +55,28 @@ function keyTyped(){ // 커서 파워 클리어
     
   if(key === 'b'){
     Aforce = Aforce * -1;
+    }
+
+  if(key === '1'){
+    Aforce = 10;
     } 
+
+  if(key === '2'){1
+    Aforce = 50;
+    } 
+
+  if(key === '3'){1
+    Aforce = 100;
+    } 
+
+  if(key === '4'){1
+    Aforce = 300;
+    } 
+
 }
 
 function mouseClicked(){ // 마우스 클릭으로 작동하니까 GUI 조작 때 겹쳐 버그 발생
-  s = new Matter(mouseX,mouseY,params.starlife);  // 새로운 고정 항성
+  s = new Matter(mouseX,mouseY,Aforce,params.starlife);  // 새로운 고정 항성
     matter.push(s);
     s.setPower(Aforce);
 }
@@ -98,7 +115,7 @@ let gravity = createVector(0, 0);
     // s.applyForce();
     if (s.life()) {
       matter.splice(s, 1);
-      let exp = new Starexpsystem(s.position,abs(Aforce));
+      let exp = new Starexpsystem(s.position,s.power);
       explosions.push(exp);
       exp.addParticle();
     }

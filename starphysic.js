@@ -27,7 +27,7 @@ class Starphysic {
     update() {
       this.velocity.add(this.acceleration);
       this.position.add(this.velocity);
-      this.lifespan -= 2;
+      this.lifespan -= 1;
       this.acceleration.mult(0);
     }
   
@@ -38,6 +38,25 @@ class Starphysic {
       strokeWeight(0);
       fill(random([10,50]), this.lifespan);
       square(this.position.x, this.position.y, this.size);
+    }
+
+    checkedge(){
+      if(this.position.y >= height - this.size){
+        this.velocity.y *=-1;
+        this.position.y = height - this.size;
+      }
+    if(this.position.y <= 0 + this.size){
+        this.velocity.y *=-1;
+        this.position.y = 0 + this.size;
+      }
+    if(this.position.x >= width - this.size){
+        this.velocity.x *=-1;
+        this.position.x = width - this.size;
+      }
+    if(this.position.x <= 0 + this.size){
+        this.velocity.x *=-1;
+        this.position.x = 0 + this.size;
+      }
     }
   
     // 파티클 제거 조건 추가 (충돌시에만, 각 물질마다 조건이 다름)
