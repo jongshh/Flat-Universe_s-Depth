@@ -26,21 +26,21 @@ class Matter extends Starphysic{
   }
 
   checkedge(){ // 캔버스 충돌
-    if(this.position.y >= height - this.power){
+    if(this.position.y >= height - abs(this.power)){
       this.velocity.y *=-1;
-      this.position.y = height - this.power;
+      this.position.y = height - abs(this.power);
     }
-  if(this.position.y <= 0 + this.power){
+  if(this.position.y <= 0 + abs(this.power)){
       this.velocity.y *=-1;
-      this.position.y = 0 + this.power;
+      this.position.y = 0 + abs(this.power);
     }
-  if(this.position.x >= width - this.power){
+  if(this.position.x >= width - abs(this.power)){
       this.velocity.x *=-1;
-      this.position.x = width - this.power;
+      this.position.x = width - abs(this.power);
     }
-  if(this.position.x <= 0 + this.power){
+  if(this.position.x <= 0 + abs(this.power)){
       this.velocity.x *=-1;
-      this.position.x = 0 + this.power;
+      this.position.x = 0 + abs(this.power);
     }
   }
 
