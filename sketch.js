@@ -36,7 +36,7 @@ function setup() {
 
 function keyPressed(){ // 파티클 생성
   if (keyCode === ENTER) {
-    m = new Materialsystem(mouseX, mouseY, params.materialmass, params.materiallife, params.nparticle, params.slife); //(X 위치 , Y 위치, 크기, 수명)
+    m = new Materialsystem(mouseX, mouseY, random(1,params.materialmass), params.materiallife, params.nparticle, params.slife); //(X 위치 , Y 위치, 크기, 수명)
     materialsystem.push(m);
   }
 }
@@ -51,12 +51,6 @@ function keyTyped(){ // 커서 파워 클리어
     } 
 }
 
-// function keyTyped(){ // 커서 파워 반전
-// if(key === 'b'){
-//   Aforce = Aforce * -1;
-//   } 
-// }
-
 function mouseClicked(){ // 마우스 클릭으로 작동하니까 GUI 조작 때 겹쳐 버그 발생
   s = new Matter(mouseX,mouseY);  // 새로운 고정 항성
     matter.push(s);
@@ -70,24 +64,12 @@ function draw() {
 let gravity = createVector(0, 0);
 
 
-  // if (keyIsDown(UP_ARROW)){
-  //   Mforce -= 0.1;
-  // }
-  // if (keyIsDown(DOWN_ARROW)){
-  //   Mforce += 0.1;
-  // }
   if (keyIsDown(SHIFT)){ // UP/DOWN 이 GUI에 간섭함
     Aforce += 0.1;
   }
   if (keyIsDown(CONTROL)){
     Aforce -= 0.1;
   }
-  // if (keyIsDown(CONTROL)){
-  //   Msize -= 0.001;
-  // }
-  // if (keyIsDown(SHIFT)){
-  //   Msize += 0.001;
-  // }
 
   //비주얼 텍스트
   strokeWeight(1)
@@ -110,7 +92,6 @@ let gravity = createVector(0, 0);
 
   //물질 구문
   for (m of materialsystem){
-  // m.sizeInterval(Msize);
   m.applyMatter(s, matter);
   m.applyCMatter(cursor);
   m.applyForce(gravity);

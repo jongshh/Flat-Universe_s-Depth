@@ -12,13 +12,12 @@ class Materialsystem{
     this.systemlife = slife;
   }
 
-  // sizeInterval(value){
-  //   this.size -= value;
-  // }
 
   addParticle(aColor) { // 파티클 추가
     if(this.particles.length < this.nparticle){
-    this.particles.push(new Materialparticle(random(0,width),random(0,height), this.size, this.lifespan)); // 각각 x, y 위치, 크기, 수명(GUI 제어)
+      for (let i = 0; i < this.nparticle; i++) {
+    this.particles[i] = new Materialparticle(random(0,width),random(0,height), this.size, this.lifespan); // 각각 x, y 위치, 크기, 수명(GUI 제어)
+      }
     }
     for (let particle of this.particles) {
     particle.c = color(aColor);
